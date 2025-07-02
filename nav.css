@@ -1,0 +1,150 @@
+:root {
+    --primary-color: #007bff; /* Example blue */
+    --text-color: #333;
+    --background-light: #f8f8f8;
+    --border-color: #ddd;
+    --font-family-sans: 'Arial', sans-serif;
+    --header-height: 60px;
+}
+
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family-sans);
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: #fff;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header Styling */
+.main-header {
+    background-color: #fff;
+    border-bottom: 1px solid var(--border-color);
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.main-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.main-nav .nav-list {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover,
+.nav-link.current {
+    color: var(--primary-color);
+}
+
+/* Mobile Menu Toggle (hidden by default on desktop) */
+.menu-toggle {
+    display: none; /* Hide on desktop */
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.hamburger {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-color);
+    position: relative;
+}
+
+.hamburger::before,
+.hamburger::after {
+    content: '';
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-color);
+    position: absolute;
+    left: 0;
+    transition: transform 0.3s ease;
+}
+
+.hamburger::before {
+    top: -8px;
+}
+
+.hamburger::after {
+    top: 8px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .main-nav {
+        display: none; /* Hide nav by default on mobile */
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: var(--header-height); /* Adjust based on your header height */
+        left: 0;
+        background-color: #fff;
+        border-top: 1px solid var(--border-color);
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .main-nav.active {
+        display: flex; /* Show when active */
+    }
+
+    .main-nav .nav-list {
+        flex-direction: column;
+        padding: 20px;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .menu-toggle {
+        display: block; /* Show hamburger on mobile */
+    }
+
+    /* Animation for hamburger */
+    .menu-toggle.active .hamburger {
+        background-color: transparent;
+    }
+
+    .menu-toggle.active .hamburger::before {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .menu-toggle.active .hamburger::after {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+}
